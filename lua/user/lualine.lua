@@ -8,6 +8,16 @@ if not status_theme_ok then
   return
 end
 
+-- check if value in table
+local function contains(t, value)
+  for _, v in pairs(t) do
+    if v == value then
+      return true
+    end
+  end
+  return false
+end
+
 vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = "#32363e" })
 vim.api.nvim_set_hl(0, "SLBranchName", { fg = "#abb2bf", bg = "#32363e", bold = false })
 -- vim.api.nvim_set_hl(0, "SLProgress", { fg = "#D7BA7D", bg = "#252525" })
@@ -102,6 +112,35 @@ local diff = {
 
 local filetype = {
   "filetype",
+  -- fmt = function(str)
+  --   local buf_ft = vim.bo.filetype
+  --   local ui_filetypes = {
+  --     "help",
+  --     "packer",
+  --     "neogitstatus",
+  --     "NvimTree",
+  --     "Trouble",
+  --     "lir",
+  --     "Outline",
+  --     "spectre_panel",
+  --     "toggleterm",
+  --     "DressingSelect",
+  --     "",
+  --   }
+  --   print(buf_ft)
+  --
+  --   if contains(ui_filetypes, buf_ft) then
+  --     return M.filetype
+  --   end
+  --
+  --   local file_icon, file_icon_color = require("nvim-web-devicons").get_icon_color("", buf_ft, { default = true })
+  --
+  --   local hl_group = "FileIconColor" .. buf_ft
+  --   vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color, bg = "#282c34" })
+  --
+  --   M.filetype = "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. buf_ft
+  --   return M.filetype
+  -- end,
   icons_enabled = true,
   -- icon = nil,
 }
@@ -171,7 +210,7 @@ local current_signature = {
 local spaces = {
   function()
     -- TODO: update codicons and use their indent
-    return " " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+    return "  " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
   end,
   padding = 0,
   separator = "%#SLSeparator#" .. " │" .. "%*",
@@ -180,6 +219,25 @@ local spaces = {
 
 local lanuage_server = {
   function()
+    local buf_ft = vim.bo.filetype
+    local ui_filetypes = {
+      "help",
+      "packer",
+      "neogitstatus",
+      "NvimTree",
+      "Trouble",
+      "lir",
+      "Outline",
+      "spectre_panel",
+      "toggleterm",
+      "DressingSelect",
+      "",
+    }
+
+    if contains(ui_filetypes, buf_ft) then
+      return M.language_servers
+    end
+
     local clients = vim.lsp.buf_get_clients()
     local client_names = {}
     local copilot_active = false
@@ -193,8 +251,6 @@ local lanuage_server = {
         copilot_active = true
       end
     end
-
-    local buf_ft = vim.bo.filetype
 
     -- add formatter
     local s = require "null-ls.sources"
@@ -226,12 +282,19 @@ local lanuage_server = {
       language_servers = "%#SLLSP#" .. "[" .. client_names_str .. "]" .. "%*"
     end
     if copilot_active then
-      return language_servers .. " " .. "%#SLCopilot#" .. icons.git.Octoface .. "%*"
+      language_servers = language_servers .. " " .. "%#SLCopilot#" .. icons.git.Octoface .. "%*"
+    end
+
+    if client_names_str_len ~= 0 and not copilot_active then
+      return ""
+    else
+      M.language_servers = language_servers
+      return language_servers
     end
   end,
   padding = 0,
   cond = hide_in_width,
-  separator = "%#SLSeparator#" .. " │ " .. "%*",
+  separator = "%#SLSeparator#" .. " │" .. "%*",
 }
 
 local location = {
