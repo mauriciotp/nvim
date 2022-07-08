@@ -46,7 +46,7 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim"
   -- use "tiagovla/scope.nvim"
-  -- use "akinsho/bufferline.nvim"
+  use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
@@ -81,7 +81,7 @@ return packer.startup(function(use)
 
   -- UI
   use "stevearc/dressing.nvim"
-  use "ghillb/cybu.nvim"
+  -- use "ghillb/cybu.nvim"
   use { "christianchiarulli/nvim-gps", branch = "text_hl" }
   use "tversteeg/registers.nvim"
   use "rcarriga/nvim-notify"
@@ -160,7 +160,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
-  use "lalitmee/browse.nvim"
+  -- use "lalitmee/browse.nvim"
 
   -- Treesitter
   use "nvim-treesitter/nvim-treesitter"
