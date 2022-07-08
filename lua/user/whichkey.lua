@@ -105,11 +105,35 @@ local m_mappings = {
 
 local mappings = {
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-  b = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
+  -- b = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
   -- ["b"] = {
   --   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
   --   "Buffers",
   -- },
+  b = {
+    name = "Buffers",
+    j = { "<cmd>BufferLinePick<cr>", "Jump" },
+    f = { "<cmd>Telescope buffers<cr>", "Find" },
+    b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
+    -- w = { "<cmd>BufferWipeout<cr>", "Wipeout" }, -- TODO: implement this for bufferline
+    e = {
+      "<cmd>BufferLinePickClose<cr>",
+      "Pick which buffer to close",
+    },
+    h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
+    l = {
+      "<cmd>BufferLineCloseRight<cr>",
+      "Close all to the right",
+    },
+    D = {
+      "<cmd>BufferLineSortByDirectory<cr>",
+      "Sort by directory",
+    },
+    L = {
+      "<cmd>BufferLineSortByExtension<cr>",
+      "Sort by language",
+    },
+  },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w<CR>", "Write" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No HL" },
@@ -129,14 +153,14 @@ local mappings = {
   ["z"] = { "<cmd>ZenMode<cr>", "Zen" },
   ["gy"] = "Link",
 
-  B = {
-    name = "Browse",
-    i = { "<cmd>BrowseInputSearch<cr>", "Input Search" },
-    b = { "<cmd>Browse<cr>", "Browse" },
-    d = { "<cmd>BrowseDevdocsSearch<cr>", "Devdocs" },
-    f = { "<cmd>BrowseDevdocsFiletypeSearch<cr>", "Devdocs Filetype" },
-    m = { "<cmd>BrowseMdnSearch<cr>", "Mdn" },
-  },
+  -- B = {
+  --   name = "Browse",
+  --   i = { "<cmd>BrowseInputSearch<cr>", "Input Search" },
+  --   b = { "<cmd>Browse<cr>", "Browse" },
+  --   d = { "<cmd>BrowseDevdocsSearch<cr>", "Devdocs" },
+  --   f = { "<cmd>BrowseDevdocsFiletypeSearch<cr>", "Devdocs Filetype" },
+  --   m = { "<cmd>BrowseMdnSearch<cr>", "Mdn" },
+  -- },
 
   p = {
     name = "Packer",
@@ -248,7 +272,7 @@ local mappings = {
       "Workspace Diagnostics",
     },
     f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
-    F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
+    -- F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     j = {
@@ -270,8 +294,7 @@ local mappings = {
       "Workspace Symbols",
     },
     t = { '<cmd>lua require("user.functions").toggle_diagnostics()<cr>', "Toggle Diagnostics" },
-    u = { '<cmd>LuaSnipUnlinkCurrent<cr>', "Unlink Snippet" },
-
+    u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
   },
 
   -- s = {
