@@ -1,3 +1,4 @@
+M = {}
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
   return
@@ -35,7 +36,7 @@ local mode_color = {
   n = "#519fdf",
   i = "#d05c65",
   v = "#b668cd",
-  [""] = "#b668cd",
+  [""] = "#b668cd",
   V = "#b668cd",
   -- c = '#B5CEA8',
   -- c = '#D7BA7D',
@@ -43,7 +44,7 @@ local mode_color = {
   no = "#519fdf",
   s = "#c18a56",
   S = "#c18a56",
-  [""] = "#c18a56",
+  [""] = "#c18a56",
   ic = "#d05c65",
   R = "#c18a56",
   Rv = "#d05c65",
