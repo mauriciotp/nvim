@@ -26,6 +26,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = { "term://*" },
+  callback = function()
+    vim.cmd "startinsert!"
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gitcommit", "markdown" },
   callback = function()
@@ -63,7 +70,7 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
   end,
 })
 
-if vim.fn.has('nvim-0.8') == 1 then
+if vim.fn.has "nvim-0.8" == 1 then
   vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
     callback = function()
       require("user.winbar").get_winbar()
