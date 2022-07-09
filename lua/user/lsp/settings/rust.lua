@@ -31,6 +31,7 @@ return {
       -- default: "<-"
       -- parameter_hints_prefix = "<- ",
       parameter_hints_prefix = " ",
+
       -- prefix for all the other hints (type, chaining)
       -- default: "=>"
       -- other_hints_prefix = "=> ",
@@ -64,7 +65,8 @@ return {
         $ curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
         $ chmod +x ~/.local/bin/rust-analyzer
     --]]
-    cmd = { os.getenv "HOME" .. "/.local/bin/rust-analyzer" },
+    -- cmd = { os.getenv "HOME" .. "/.local/bin/rust-analyzer" },
+    cmd = { "rustup", "run", "nightly", os.getenv "HOME" .. "/.local/bin/rust-analyzer" },
     on_attach = require("user.lsp.handlers").on_attach,
     capabilities = require("user.lsp.handlers").capabilities,
 
