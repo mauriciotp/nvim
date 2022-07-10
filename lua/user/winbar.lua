@@ -23,11 +23,8 @@ local get_filename = function()
   local f = require "user.functions"
 
   if not f.isempty(filename) then
-    local file_icon, file_icon_color = require("nvim-web-devicons").get_icon_color(
-      filename,
-      extension,
-      { default = true }
-    )
+    local file_icon, file_icon_color =
+      require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
     local hl_group = "FileIconColor" .. extension
 
@@ -95,6 +92,13 @@ M.get_winbar = function()
     else
       value = value .. mod
     end
+  end
+
+  local num_tabs = #vim.api.nvim_list_tabpages()
+
+  if num_tabs > 1 and not f.isempty(value) then
+    local tabpage_number = tostring(vim.api.nvim_tabpage_get_number(0))
+    value = value .. "%=" .. tabpage_number .. "/" .. tostring(num_tabs)
   end
 
   local status_ok, _ = pcall(vim.api.nvim_set_option_value, "winbar", value, { scope = "local" })

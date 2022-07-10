@@ -73,11 +73,14 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
 })
 
 if vim.fn.has "nvim-0.8" == 1 then
-  vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
-    callback = function()
-      require("user.winbar").get_winbar()
-    end,
-  })
+  vim.api.nvim_create_autocmd(
+    { "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost", "TabClosed" },
+    {
+      callback = function()
+        require("user.winbar").get_winbar()
+      end,
+    }
+  )
 end
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {

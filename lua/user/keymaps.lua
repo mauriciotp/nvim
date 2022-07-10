@@ -26,6 +26,10 @@ keymap("n", "<m-j>", "<C-w>j", opts)
 keymap("n", "<m-k>", "<C-w>k", opts)
 keymap("n", "<m-l>", "<C-w>l", opts)
 
+-- Tabs --
+keymap("n", "<m-t>", ":tabnew %<cr>", opts)
+keymap("n", "<m-c>", ":tabclose<cr>", opts)
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -41,6 +45,9 @@ keymap("x", "H", "^", opts)
 keymap("x", "L", "$", opts)
 keymap("o", "H", "^", opts)
 keymap("o", "L", "$", opts)
+
+-- keymap("n", "n", "nzzzv", opts)
+-- keymap("n", "N", "Nzzzv", opts)
 
 -- Naviagate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
