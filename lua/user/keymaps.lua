@@ -1,6 +1,5 @@
 M = {}
 local opts = { noremap = true, silent = true }
-
 local term_opts = { silent = true }
 
 -- Shorten function name
@@ -29,6 +28,7 @@ keymap("n", "<m-l>", "<C-w>l", opts)
 -- Tabs --
 keymap("n", "<m-t>", ":tabnew %<cr>", opts)
 keymap("n", "<m-c>", ":tabclose<cr>", opts)
+keymap("n", [[c-\]], ":tabonly<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
