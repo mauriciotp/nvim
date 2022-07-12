@@ -45,6 +45,7 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim"
+  use "nvim-lua/popup.nvim"
   -- use "tiagovla/scope.nvim"
   use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
@@ -56,7 +57,7 @@ return packer.startup(function(use)
   use "christianchiarulli/hop.nvim"
   -- use "phaazon/hop.nvim"
   -- Lua
-  use "kylechui/nvim-surround"
+  -- use "kylechui/nvim-surround"
   -- Lua
   use {
     "abecodes/tabout.nvim",
@@ -95,6 +96,7 @@ return packer.startup(function(use)
   use "karb94/neoscroll.nvim"
   use "folke/todo-comments.nvim"
   use "andymass/vim-matchup"
+  use "is0n/jaq-nvim"
 
   -- Colorschemes
   use "folke/tokyonight.nvim"
@@ -151,7 +153,7 @@ return packer.startup(function(use)
   use "mfussenegger/nvim-jdtls"
 
   -- Rust
-  use "simrat39/rust-tools.nvim"
+  use { "christianchiarulli/rust-tools.nvim", branch = "handler_nil_check" }
   use "Saecki/crates.nvim"
 
   -- Typescript TODO: set this up, also add keybinds to ftplugin
@@ -161,7 +163,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
-  -- use "lalitmee/browse.nvim"
+  use "lalitmee/browse.nvim"
 
   -- Treesitter
   use "nvim-treesitter/nvim-treesitter"
